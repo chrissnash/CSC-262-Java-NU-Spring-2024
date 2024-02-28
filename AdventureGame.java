@@ -5,7 +5,9 @@ public class AdventureGame {
 
     public static void main(String[] args) {
         displayWelcomeMessage(); //display welcome message
-        firstChoice(); //stores user's first choice when prompted
+        //firstChoice(); //stores user's first choice when prompted
+        //makeChoice();
+        startAdventure();
     }
 
     private static void displayWelcomeMessage() {
@@ -13,9 +15,10 @@ public class AdventureGame {
         System.out.println("Your quest is to find the hidden treasure.");
     }
 
-    private static void firstChoice() {
-        System.out.println("You're standing in a dark forest and you lost your flashlight. Do you want to go 'left' or 'right'?");
+    /*private static void makeChoice() {
+        System.out.println("You're standing in a dark forest and you lost your flashlight. Do you want to go 'forward', 'backward', 'left', or 'right'?");
         String choice = scanner.nextLine();
+    }
 
         if (choice.equalsIgnoreCase("right")){
             goRight();
@@ -26,8 +29,39 @@ public class AdventureGame {
             firstChoice(); //ask the user the choice again
         }
 
+    }*/
+
+    private static void startAdventure() {
+        System.out.println("You're standing in a dark forest and you lost your flashlight...........");
+        System.out.println("Do you want to go 'forward', 'backward', 'left', or 'right'?");
+        makeChoice();
     }
     
+    private static void makeChoice() {
+        String choice = scanner.nextLine();
+        switch (choice.toLowerCase()) {
+            case "forward":
+                goForward();
+                makeChoice();
+                break;
+            case "backward":
+                goBackward();
+                makeChoice();
+                break;
+            case "left":
+                goLeft();
+                break;
+            case "right":
+                goRight();
+                makeChoice();
+                break;
+            default:
+                System.out.println("Invalid choice please type 'forward', 'backward', 'left', or 'right'");
+                makeChoice(); //ask user again
+                break;
+        }
+    }
+
     private static void goLeft() {
         System.out.println("You've encountered a wild river surrounded by killer wolves. Health:-100, Game Over!");
         // Optionally, you can add more options or an option to restart the game.
@@ -35,5 +69,14 @@ public class AdventureGame {
 
     private static void goRight() {
         System.out.println("You've found a small but dark hut. You go inside and fall through a trap door." + "\n" + "When you land, you discover a small treasure box. Congratulations! You Win!");
+    }
+
+    private static void goForward() {
+        System.out.println("You move 10 steps forward and find an apple of life. Health:+10, Keep searching for the treasure.");
+
+    }
+
+    private static void goBackward() {
+        System.out.println("You moved 10 steps backward, and step on a Scorpion. Health:-50.");
     }
 }
